@@ -53,7 +53,10 @@ public class AddPositionDialog extends DialogFragment {
                 .setView(view)
                 .setPositiveButton("Добавить", (dialogInterface, i) -> {
                     String name = mPositionNameEditText.getText().toString();
-                    int quantity = Integer.parseInt(mPositionQuantityEditText.getText().toString());
+                    int quantity = 0;
+                    try {
+                        quantity = Integer.parseInt(mPositionQuantityEditText.getText().toString());
+                    }catch (NumberFormatException e){}
                     Position position = new Position(name, quantity);
                     mListener.onPositionAdded(position);
                 })
