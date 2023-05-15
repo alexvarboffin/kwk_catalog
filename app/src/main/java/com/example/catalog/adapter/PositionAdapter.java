@@ -41,7 +41,7 @@ public class PositionAdapter extends ArrayAdapter<Position> {
         TextView countTextView = view.findViewById(R.id.countTextView);
         countTextView.setText(String.valueOf(positionItem.getCount()));
 
-        Button plusButton = view.findViewById(R.id.plusButton);
+        View plusButton = view.findViewById(R.id.plusButton);
         plusButton.setOnClickListener(v -> {
             int count = positionItem.getCount();
             count++;
@@ -49,7 +49,7 @@ public class PositionAdapter extends ArrayAdapter<Position> {
             countTextView.setText(String.valueOf(count));
         });
 
-        Button minusButton = view.findViewById(R.id.minusButton);
+        View minusButton = view.findViewById(R.id.minusButton);
         minusButton.setOnClickListener(v -> {
             int count = positionItem.getCount();
             if (count > 0) {
@@ -58,13 +58,10 @@ public class PositionAdapter extends ArrayAdapter<Position> {
                 countTextView.setText(String.valueOf(count));
             }
         });
-        Button deleteButton = view.findViewById(R.id.deleteButton);
-        deleteButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                positionList.remove(position);
-                notifyDataSetChanged();
-            }
+        View deleteButton = view.findViewById(R.id.deleteButton);
+        deleteButton.setOnClickListener(v -> {
+            positionList.remove(position);
+            notifyDataSetChanged();
         });
         return view;
     }

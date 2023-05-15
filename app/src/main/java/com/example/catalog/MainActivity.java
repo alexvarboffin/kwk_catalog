@@ -19,7 +19,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity
         implements AddPositionDialog.OnPositionAddedListener {
-    private ArrayList<Position> positionList = new ArrayList<>();
+    private final ArrayList<Position> positionList = new ArrayList<>();
     private PositionAdapter positionAdapter;
 
     @Override
@@ -36,13 +36,8 @@ public class MainActivity extends AppCompatActivity
         positionAdapter = new PositionAdapter(this, positionList);
         positionListView.setAdapter(positionAdapter);
 
-        Button addButton = findViewById(R.id.add_button);
-        addButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showAddPositionDialog();
-            }
-        });
+        View addButton = findViewById(R.id.add_button);
+        addButton.setOnClickListener(view -> showAddPositionDialog());
     }
 
     private void showAddPositionDialog() {
